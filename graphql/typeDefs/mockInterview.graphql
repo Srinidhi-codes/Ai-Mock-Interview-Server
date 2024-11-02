@@ -1,0 +1,52 @@
+type MockInterview {
+    id: String!
+    jsonMockResp: String!
+    jobPosition: String!
+    jobDesc: String!
+    jobExperience: Int!
+    mockId: String!
+    createdBy: String!
+    createdAt: String
+}
+
+type MockInterviewFeedback {
+    id: String!
+    mockIdRef: String!
+    question: String!
+    correctAnswer: String!
+    userAnswer: String!
+    feedback: String
+    rating: Int!
+    userEmail: String!
+    createdAt: String
+    updatedAt: String
+}
+
+input MockInterviewInput {
+    jsonMockResp: String!
+    jobPosition: String!
+    jobDesc: String!
+    jobExperience: Int!
+    mockId: String!
+    createdBy: String!
+}
+
+input MockInterviewFeedbackInput {
+    mockIdRef: String!
+    question: String!
+    correctAnswer: String!
+    userAnswer: String!
+    feedback: String!
+    rating: Int!
+    userEmail: String!
+}
+
+type Query {
+    mockInterview(createdBy: String, mockId: String): [MockInterview!]!
+    mockInterviewFeedback(mockId: String!): [MockInterviewFeedback!]!
+}
+
+type Mutation {
+    createMockInterview(input: MockInterviewInput!): MockInterview
+    createMockInterviewFeedback(input: MockInterviewFeedbackInput!): MockInterviewFeedback
+}
