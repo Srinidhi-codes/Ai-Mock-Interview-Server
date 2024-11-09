@@ -9,13 +9,8 @@ const { typeDefs, resolvers } = require('./graphql');
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 4000;
-const corsOptions = {
-  origin: process.env.CLIENT_URL || "https://ai-mock-interview-web-go3e.vercel.app/dashboard",  
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, 
-};
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(express.json());
 const server = async () => {
     const server = new ApolloServer({
