@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const { typeDefs, resolvers } = require('./graphql');
-const db = require("./db/models");
 
 // Middlewares
 const app = express();
@@ -22,11 +21,9 @@ const server = async () => {
     app.use('/graphql', expressMiddleware(server));
 }
 
-db.sequelize.sync().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server Ready At http://localhost:${PORT}`);
-        console.log(`Graphql Ready At http://localhost:${PORT}/graphql`);
-    });
+app.listen(PORT, () => {
+    console.log(`Server Ready At http://localhost:${PORT}`);
+    console.log(`Graphql Ready At http://localhost:${PORT}/graphql`);
 });
 
 
