@@ -23,7 +23,7 @@ const startServer = async () => {
     app.use(
         '/graphql',
         cors({
-            origin: ['https://ai-mock-interview-web.vercel.app/graphql', 'https://studio.apollographql.com'],
+            origin: ['https://ai-mock-interview-web.vercel.app', 'https://studio.apollographql.com'],
             credentials: true
         }),
         express.json(),
