@@ -9,15 +9,20 @@ const { typeDefs, resolvers } = require('./graphql');
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 4000;
-
+const corsOptions = {
+  origin: process.env.CLIENT_URL || "http://localhost:3000",  
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, 
+};
+app.use(cors(corsOptions));
+app.use(express.json());
 const server = async () => {
     const server = new ApolloServer({
         typeDefs,
         resolvers
     });
     await server.start();
-    app.use(cors());
-    app.use(express.json());
     app.use('/graphql', expressMiddleware(server));
 }
 
